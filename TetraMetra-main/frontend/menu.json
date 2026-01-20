@@ -1,0 +1,380 @@
+{
+  "navigation": {
+    "Home": {
+      "url": "/",
+      "text": "Home"
+    },
+    "About Us": {
+      "url": "#",
+      "text": "About Us",
+      "children": {
+        "Who We Are": {
+          "url": "/about-us/",
+          "text": "Who We Are"
+        },
+        "Our Leaders": {
+          "url": "/our-team/",
+          "text": "Our Leaders"
+        },
+        "Policies": {
+          "url": "#",
+          "text": "Policies",
+          "children": {
+            "Privacy Policy": {
+              "url": "/privacy-policy/",
+              "text": "Privacy Policy"
+            },
+            "Terms of Service": {
+              "url": "/terms-of-service/",
+              "text": "Terms of Service"
+            }
+          }
+        }
+      }
+    },
+    "Consulting": {
+      "url": "#",
+      "text": "Consulting",
+      "children": {
+        "Manufacturing Excellence Services": {
+          "url": "#",
+          "text": "Manufacturing Excellence Services",
+          "children": {
+            "Operational Excellence Consulting": {
+              "url": "/manufacturing-operational-excellence-consulting/",
+              "text": "Operational Excellence Consulting"
+            },
+            "TPM Consulting": {
+              "url": "/tpm-consultants/",
+              "text": "TPM Consulting"
+            },
+            "TQM Consulting": {
+              "url": "/tqm-consultants/",
+              "text": "TQM Consulting"
+            },
+            "Lean Manufacturing Consulting": {
+              "url": "/lean-manufacturing-consultants/",
+              "text": "Lean Manufacturing Consulting"
+            },
+            "Manufacturing Cost Reduction": {
+              "url": "/manufacturing-excellence/",
+              "text": "Manufacturing Cost Reduction"
+            },
+            "Visual Management Consulting": {
+              "url": "/visual-management-consultants/",
+              "text": "Visual Management Consulting"
+            }
+          }
+        },
+        "Plant Layout Design": {
+          "url": "/plant-layout-design/",
+          "text": "Plant Layout Design"
+        },
+        "Dojo Training Center": {
+          "url": "#",
+          "text": "Dojo Training Center",
+          "children": {
+            "DOJO Training Center | DOJO Centre | DOJO Simulations": {
+              "url": "/dojo-training-center/",
+              "text": "DOJO Training Center | DOJO Centre | DOJO Simulations"
+            },
+            "DOJO 2.0": {
+              "url": "/dojo-2-0/",
+              "text": "DOJO 2.0"
+            },
+            "AR/VR in Dojo": {
+              "url": "/mini-dojo-training-center/",
+              "text": "AR/VR in Dojo"
+            }
+          }
+        },
+        "Digitization": {
+          "url": "/digitization/",
+          "text": "Digitization"
+        },
+        "ISO Implementation": {
+          "url": "/iso-certification-consultants/",
+          "text": "ISO Implementation",
+          "children": {
+            "ISO 9001:2015 (Quality Management System)": {
+              "url": "/iso-9001-qms/",
+              "text": "ISO 9001:2015 (Quality Management System)"
+            },
+            "ISO for Safety Management | ISO 45001 Consultancy | ISO 45001 Safety Management System": {
+              "url": "/iso-45001-consultancy/",
+              "text": "ISO for Safety Management | ISO 45001 Consultancy | ISO 45001 Safety Management System"
+            },
+            "ISO 31000:2018 Enterprise Risk Management System Implementation ERM": {
+              "url": "/?page_id=25434",
+              "text": "ISO 31000:2018 Enterprise Risk Management System Implementation ERM"
+            },
+            "ISO 14001:2015 (Environmental Management System)": {
+              "url": "/?page_id=23985",
+              "text": "ISO 14001:2015 (Environmental Management System)"
+            },
+            "ISO 50001 EnMS (Energy Management System)": {
+              "url": "/iso-50001-enms/",
+              "text": "ISO 50001 EnMS (Energy Management System)"
+            }
+          }
+        },
+        "Energy Cost Reduction Services": {
+          "url": "/energy-audit-and-efficiency-services/",
+          "text": "Energy Cost Reduction Services"
+        }
+      }
+    },
+    "Skill Training": {
+      "url": "#",
+      "text": "Skill Training",
+      "children": {
+        "Corporate Training Course In India": {
+          "url": "/corporate-training-companies/",
+          "text": "Corporate Training Course In India"
+        },
+        "Technical Training Courses": {
+          "url": "/corporate-training-companies/technical-trainings/",
+          "text": "Technical Training Courses",
+          "children": {
+            "Advanced Product Quality Planning Program-APQP": {
+              "url": "/corporate-training-companies/technical-trainings/advanced-product-quality-planning/",
+              "text": "Advanced Product Quality Planning Program-APQP"
+            },
+            "Design Failure Mode Effect Analysis – DFMEA": {
+              "url": "/corporate-training-companies/technical-trainings/design-fmea/",
+              "text": "Design Failure Mode Effect Analysis – DFMEA"
+            },
+            "Process Failure Mode Effect Analysis – PFMEA": {
+              "url": "/corporate-training-companies/technical-trainings/process-failure-mode-effect-analysis-pfmea/",
+              "text": "Process Failure Mode Effect Analysis – PFMEA"
+            },
+            "Statistical Process Control Training – SPC": {
+              "url": "/corporate-training-companies/technical-trainings/statistical-process-control/",
+              "text": "Statistical Process Control Training – SPC"
+            },
+            "Measurement System Analysis (MSA)": {
+              "url": "/corporate-training-companies/technical-trainings/measurement-system-analysis-msa/",
+              "text": "Measurement System Analysis (MSA)"
+            },
+            "GD&T Training | Geometric Dimensioning and Tolerancing": {
+              "url": "/corporate-training-companies/technical-trainings/geometric-dimensioning-and-tolerancing/",
+              "text": "GD&T Training | Geometric Dimensioning and Tolerancing"
+            },
+            "Advanced GD&T Training Course | GD&T": {
+              "url": "/corporate-training-companies/technical-trainings/advanced-gd-and-t-training/",
+              "text": "Advanced GD&T Training Course | GD&T"
+            },
+            "Inventory Management Courses": {
+              "url": "/corporate-training-companies/technical-trainings/inventory-management/",
+              "text": "Inventory Management Courses"
+            },
+            "Production Part Approval Process – PPAP": {
+              "url": "/corporate-training-companies/technical-trainings/production-part-approval-process/",
+              "text": "Production Part Approval Process – PPAP"
+            },
+            "Industry 4.0 Courses | Training": {
+              "url": "/corporate-training-companies/technical-trainings/industry-4-0-courses/",
+              "text": "Industry 4.0 Courses | Training"
+            },
+            "Industry 5.0": {
+              "url": "/corporate-training-companies/technical-trainings/industry-5-0/",
+              "text": "Industry 5.0"
+            },
+            "Virtual Reality – VR": {
+              "url": "/corporate-training-companies/technical-trainings/virtual-reality/",
+              "text": "Virtual Reality – VR"
+            },
+            "Design Of Experiment – DOE": {
+              "url": "/corporate-training-companies/technical-trainings/design-of-experiment/",
+              "text": "Design Of Experiment – DOE"
+            },
+            "Electric Vehicle – EV": {
+              "url": "/corporate-training-companies/technical-trainings/electric-vehicle/",
+              "text": "Electric Vehicle – EV"
+            },
+            "Design For Quality | DFQ Training Courses": {
+              "url": "/corporate-training-companies/technical-trainings/design-for-quality-training/",
+              "text": "Design For Quality | DFQ Training Courses"
+            },
+            "Overall Equipment Effectiveness Training | OEE": {
+              "url": "/corporate-training-companies/technical-trainings/oee-calculation-and-improvement-action/",
+              "text": "Overall Equipment Effectiveness Training | OEE"
+            },
+            "TPM In Manufacturing Training Courses": {
+              "url": "/corporate-training-companies/technical-trainings/total-productive-maintenance-course-tpm/",
+              "text": "TPM In Manufacturing Training Courses"
+            },
+            "UL 60335-2-40/CSA Training Harmonized IEC Standard'": {
+              "url": "/ul-60335-2-40-csa-training-harmonised-iec-standard/",
+              "text": "UL 60335-2-40/CSA Training Harmonized IEC Standard'"
+            },
+            "Industrial Control Panel Standard UL 508A Training": {
+              "url": "/ul-508a-training/",
+              "text": "Industrial Control Panel Standard UL 508A Training"
+            }
+          }
+        },
+        "Process Improvement Training Courses": {
+          "url": "/corporate-training-companies/process-improvement-training-courses/",
+          "text": "Process Improvement Training Courses",
+          "children": {
+            "Cost Reduction Strategies | Training Courses": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/cost-reduction-strategies/",
+              "text": "Cost Reduction Strategies | Training Courses"
+            },
+            "Problem Solving with new 7 QC Tools Training in India": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/7-new-qctools/",
+              "text": "Problem Solving with new 7 QC Tools Training in India"
+            },
+            "Line Balancing in Manufacturing | Training": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/line-balancing/",
+              "text": "Line Balancing in Manufacturing | Training"
+            },
+            "Root Cause Analysis Training | RCA Training": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/root-cause-analysis/",
+              "text": "Root Cause Analysis Training | RCA Training"
+            },
+            "Simple & Low-Cost Automation | Industrial Automation Course": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/simple-low-cost-automation/",
+              "text": "Simple & Low-Cost Automation | Industrial Automation Course"
+            },
+            "5s Safety Training in Workplace | Lean Training": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/5s-training-program/",
+              "text": "5s Safety Training in Workplace | Lean Training"
+            },
+            "Value Engineering & Value Analysis Training": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/value-engineering-value-analysis/",
+              "text": "Value Engineering & Value Analysis Training"
+            },
+            "Performance Management and Improvement Plan": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/performance-management-and-improvement-plan/",
+              "text": "Performance Management and Improvement Plan"
+            },
+            "Total Quality Management (TQM) Training Course in India": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/total-quality-management-tqm/",
+              "text": "Total Quality Management (TQM) Training Course in India"
+            },
+            "Quality Control System": {
+              "url": "/?page_id=12632",
+              "text": "Quality Control System"
+            },
+            "Cost Reduction by Lean Manufacturing": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/cost-reduction-by-lean-manufacturing/",
+              "text": "Cost Reduction by Lean Manufacturing"
+            },
+            "Why Why Analysis | Fish-born | 5 why training": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/why-why-analysis-fish-born-5-why-training/",
+              "text": "Why Why Analysis | Fish-born | 5 why training"
+            },
+            "Kaizen Training Program| Kaizen Certification": {
+              "url": "/corporate-training-companies/process-improvement-training-courses/kaizen-training-program/",
+              "text": "Kaizen Training Program| Kaizen Certification"
+            }
+          }
+        },
+        "Strategic Management and Training Consultants": {
+          "url": "/?page_id=12063",
+          "text": "Strategic Management and Training Consultants",
+          "children": {
+            "Environmental, Social and Governance (ESG) Training": {
+              "url": "/corporate-training-companies/strategic-training/esg-certification-training/",
+              "text": "Environmental, Social and Governance (ESG) Training"
+            },
+            "Daily Work Management": {
+              "url": "/corporate-training-companies/strategic-training/daily-work-management/",
+              "text": "Daily Work Management"
+            },
+            "Design Thinking Course | Online Trainings": {
+              "url": "/corporate-training-companies/strategic-training/design-thinking/",
+              "text": "Design Thinking Course | Online Trainings"
+            },
+            "Finanace For Non Finance Managers Training": {
+              "url": "/corporate-training-companies/strategic-training/finance-for-non-finance-manager/",
+              "text": "Finanace For Non Finance Managers Training"
+            },
+            "Theory Of Inventive Problem Solving (Triz)": {
+              "url": "/corporate-training-companies/strategic-training/theory-of-inventive-problem-solving/",
+              "text": "Theory Of Inventive Problem Solving (Triz)"
+            },
+            "Balance Score Card": {
+              "url": "/corporate-training-companies/strategic-training/balance-score-card/",
+              "text": "Balance Score Card"
+            },
+            "Competency Mapping": {
+              "url": "/corporate-training-companies/strategic-training/competency-mapping/",
+              "text": "Competency Mapping"
+            },
+            "Productivity Focus Skill Mapping": {
+              "url": "/corporate-training-companies/strategic-training/productivity-focus-skill-mapping/",
+              "text": "Productivity Focus Skill Mapping"
+            },
+            "World Class Manufacturing": {
+              "url": "/corporate-training-companies/strategic-training/world-class-manufacturing/",
+              "text": "World Class Manufacturing"
+            },
+            "DWM and Time Management Techniques": {
+              "url": "/dwm-and-time-management-techniques/",
+              "text": "DWM and Time Management Techniques"
+            }
+          }
+        },
+        "Behavioural Training": {
+          "url": "/corporate-training-companies/behavioural-training/",
+          "text": "Behavioural Training",
+          "children": {
+            "Presentation Skills Training Courses": {
+              "url": "/?page_id=12379",
+              "text": "Presentation Skills Training Courses"
+            },
+            "The Art of Delegation Training": {
+              "url": "/corporate-training-companies/behavioural-training/art-of-delegation-training/",
+              "text": "The Art of Delegation Training"
+            },
+            "Planning & Prioritization Skills Training": {
+              "url": "/corporate-training-companies/behavioural-training/planning-and-prioritization-skill/",
+              "text": "Planning & Prioritization Skills Training"
+            },
+            "Team, Time and Task Management Training & Seminars": {
+              "url": "/corporate-training-companies/behavioural-training/team-time-and-task-management/",
+              "text": "Team, Time and Task Management Training & Seminars"
+            },
+            "Non Verbal Communication Online Training": {
+              "url": "/?page_id=13155",
+              "text": "Non Verbal Communication Online Training"
+            },
+            "Team Development & Motivation Training Programmes": {
+              "url": "/corporate-training-companies/behavioural-training/team-development-motivation/",
+              "text": "Team Development & Motivation Training Programmes"
+            }
+          }
+        }
+      }
+    },
+    "AMR/AGV": {
+      "url": "#",
+      "text": "AMR/AGV",
+      "children": {
+        "Autonomous Mobile Robot | AGV | AMR": {
+          "url": "/automated-guided-vehicle-manufacturers/",
+          "text": "Autonomous Mobile Robot | AGV | AMR"
+        }
+      }
+    },
+    "Career": {
+      "url": "/career/",
+      "text": "Career"
+    },
+    "Case Studies": {
+      "url": "/case-studies/",
+      "text": "Case Studies"
+    },
+    "Blog": {
+      "url": "/blog/",
+      "text": "Blog"
+    },
+    "Contact Us": {
+      "url": "/contact-us/",
+      "text": "Contact Us"
+    }
+  }
+}

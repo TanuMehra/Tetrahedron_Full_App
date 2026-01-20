@@ -1,0 +1,53 @@
+# Node modules
+node_modules/
+
+# Next.js build output
+.next/
+
+# Production build
+out/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+bower_components/
+
+# Coverage
+coverage/
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files (e.g., VS Code, IntelliJ, etc.)
+.vscode/
+.idea/
+
+# Yarn & npm logs
+yarn-debug.log*
+yarn-error.log*
+
+# macOS system files
+.AppleDouble
+.LSOverride
+
+# Windows installer files
+Thumbs.db
+
+# JetBrains IDEs
+.idea/
+
+# Ignore large files (you can include specific paths if needed)
+*.swc
+*.node
+.cursor/rules/edit-rules-and-steps.mdc

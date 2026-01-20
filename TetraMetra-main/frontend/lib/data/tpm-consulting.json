@@ -1,0 +1,134 @@
+{
+    "title": "TPM Consulting",
+    "img": "https://dummyimage.com/1200x600",
+    "bannerTitle": "TPM CONSULTANTS | TOTAL PRODUCTIVE MAINTENANCE CONSULTING",
+    "bannerSubtitle": "Achieve Higher Quality, Fewer Defects & Lower Manufacturing Cost with us.",
+    "bannerDescription": "TPM (Total Productive Maintenance) is a culture that focuses on improving the effectiveness of the plant, equipment and processes through the empowerment of people to achieve perfect production.",
+    "introText": "TPM emphasises proactive and preventative maintenance to maximise the operational efficiency of equipment. It blurs the distinction between the roles of production and maintenance by placing a strong emphasis on empowering operators to help and maintain their equipment.",
+    "whyChoose": {
+        "title": "WHY COMPANIES CHOOSE THE TPM APPROACH: INSIGHTS FROM TPM CONSULTANTS",
+        "content": "Before TPM implementation operator only use the machine and the maintenance person is responsible for daily maintenance due to which maintenance persons don't get enough time for preventive maintenance. After successfully implementing TPM in manufacturing industry, they can produce their product in LESS TIME, LESS COST, ZERO LOSS, without affecting quality of the product.",
+        "subTitle": "READY TO GET STARTED BUT NOT SURE WHERE TO BEGIN?",
+        "subText": "Let's figure it out together."
+    },
+    "industries": [
+        "https://dummyimage.com/600x400/000/fff",
+        "https://dummyimage.com/600x400/111/fff",
+        "https://dummyimage.com/600x400/222/fff",
+        "https://dummyimage.com/600x400/333/fff"
+    ],
+    "pillars": [
+        {
+            "title": "Focused Improvement",
+            "content": "Set Improvement Themes and Targets\n  Select Model Equipment, Line and Process\n  Organize Project Teams\n  Understand Present Losses (OEE)\n  Set Improvement Themes and Targets\n  Draft Improvement Plan\n  Perform Analysis and Draft and Evaluate Countermeasures\n  Implement Improvement\n  Confirm Results\n  Take Measures to Prevent Recurrence\n  Horizontal Replication"
+        },
+        {
+            "title": "Autonomous Maintenance",
+            "content": "Machine Ownership- Gives operators greater \"ownership\" of their equipment.\n  Initial Cleaning- Places responsibility for routine maintenance, such as cleaning, lubricating, and inspection, in the hands of operators\n  Increases operators' knowledge of their equipment..\n  Identifies emergent issues before they become failures.\n  Frees maintenance personnel for higher-level tasks.\n  Identify Source of Contamination (SOC) identification\n  Hard to access area (HTTA) identification\n  General Inspection\n  CLIT\n  Standardization"
+        },
+        {
+            "title": "Planned Maintenance",
+            "content": "Set Improvement Themes and Targets\n  Select Model Equipment, Line and Process\n  Organize Project Teams\n  Understand Present Losses (OEE)\n  Set Improvement Themes and Targets\n  Draft Improvement Plan\n  Perform Analysis and Draft and Evaluate Countermeasures\n  Implement Improvement\n  Confirm Results\n  Take Measures to Prevent Recurrence\n  Horizontal Replication"
+        },
+        {
+            "title": "Education & Training",
+            "content": "Fill in knowledge gaps necessary to achieve TPM goals.\n  Applies to operators, maintenance personnel and managers.\n  Operators develop skills to routinely maintain equipment and identify emerging problems.\n  Maintenance personnel learn techniques for proactive and preventative maintenance.\n  Managers are trained on TPM principles as well as on employee coaching and development."
+        },
+        {
+            "title": "Early Equipment Management",
+            "content": "New equipment reaches planned performance levels much faster due to fewer startup issues.\n  Directs practical knowledge and understanding of manufacturing equipment gained through TPM towards improving the design of new equipment.\n  Maintenance is simpler and more robust due to practical review and employee involvement prior to installation."
+        },
+        {
+            "title": "Quality Maintenance",
+            "content": "Design error detection and prevention into production processes.\n  Apply Root Cause Analysis to eliminate recurring sources of quality defects.\n  Specifically targets quality issues with improvement projects focused on removing root sources of defects.\n  Reduces number of defects.\n  Reduces cost by catching defects early (it is expensive and unreliable to find defects through inspection)."
+        },
+        {
+            "title": "Office TPM",
+            "content": "Apply TPM techniques to administrative functions.\n  Extends TPM benefits beyond the plant floor by addressing waste in administrative functions.\n  Supports production through improved administrative operations (e.g. order processing, procurement, and scheduling)."
+        },
+        {
+            "title": "Safety, Health & Environment",
+            "content": "Maintain a safe and healthy working environment.\n  Eliminates potential health and safety risks, resulting in a safer workplace.\n  Specifically targets the goal of an accident-free workplace."
+        }
+    ],
+    "features": [
+        {
+            "icon": "Briefcase",
+            "title": "Productivity",
+            "desc": "TPM Consultants Obtain a Minimum 90% OEE (Overall Equipment Effectiveness)"
+        },
+        {
+            "icon": "BarChart",
+            "title": "Cost",
+            "desc": "Reduce the manufacturing cost by 30% while maintaining product quality"
+        },
+        {
+            "icon": "Users",
+            "title": "Delivery",
+            "desc": "Achieve 100% success in delivering the goods as required by the customer"
+        },
+        {
+            "icon": "TrendingUp",
+            "title": "Safety",
+            "desc": "Sustain a workplace free from accidents and injuries."
+        },
+        {
+            "icon": "Target",
+            "title": "Moral",
+            "desc": "Increase the suggestions by 3 times. Develop Multi-skilled and flexible workers"
+        },
+        {
+            "icon": "Globe",
+            "title": "Productivity",
+            "desc": "TPM Consultants Obtain a Minimum 90% OEE (Overall Equipment Effectiveness)"
+        }
+    ],
+    "certification": {
+        "title": "WHAT IS JIPM CERTIFICATION IN TPM?",
+        "content": "The Japan Institute of Plant Maintenance(JIPM) offers Total Productive Maintenance(TPM) certification that indicates expertise in reducing downtime and improving equipment effectiveness. JIPM TPM certification is recognized globally as a mark of excellence in manufacturing operations.",
+        "process": [
+            "Declaration by Top Management Introduce TPM",
+            "Education and Campaign to Introduce TPM",
+            "Establishment of a TPM Promotion Organization and Formal Organization Model",
+            "Establish Basic TPM Policies and Goals",
+            "Formulate Master Plan for TPM Implementation",
+            "TPM Kickoff",
+            "Improve Equipment Effectiveness",
+            "Establish an Autonomous Maintenance Program",
+            "Establish a Planned Maintenance Program",
+            "Conduct Training to Improve Operation and Maintenance Skills",
+            "Develop an Early Equipment Management Program",
+            "Establish a Quality Maintenance System",
+            "Establish a TPM System for Administrative and Support Departments",
+            "Develop a Safety, Health, and Environment Management System",
+            "Full Implementation of TPM and Aim for Higher Goals"
+        ],
+        "note": "Tetrahedron Manufacturing Services specializes in providing consultancy to achieve JIPM TPM certification and improve manufacturing efficiency."
+    },
+    "caseStudy": {
+        "title": "Total Productivity Maintenance in Leading uPVC, CPVC, PPR-C Pipes & Fittings Manufacturer",
+        "content": "The company is one of the major piping solution providing company with strong brand value in the market. They were facing challenges with equipment efficiency, quality issues, and high manufacturing costs."
+    },
+    "outcomes": {
+        "challenges": [
+            "Max. OEE was 45%",
+            "Customer complaint was 20 + per month",
+            "Skill score was below 30%",
+            "No safety practices by employees",
+            "Lower productivity due to overtime"
+        ],
+        "approach": [
+            "Focus on Total Productive Maintenance",
+            "Focus on Quality",
+            "Employee Engagement",
+            "Lean Six Sigma",
+            "Customer Service"
+        ],
+        "results": [
+            "5S score up to 80%",
+            "Line efficiency increased by 20%",
+            "Skill Score improved by 30%",
+            "Reduction in changeover time by 70%"
+        ]
+    }
+}
