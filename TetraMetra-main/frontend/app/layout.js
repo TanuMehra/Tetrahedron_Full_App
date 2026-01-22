@@ -15,9 +15,48 @@ const poppins = Poppins({
   display: "swap",
 });
 
+
 export const metadata = {
-  title: "Tetrahedron",
-  description: "Manufacturing Consulting Firm In India",
+  title: "Tetrahedron | Manufacturing Consulting Firm",
+  description:
+  "Tetrahedron is a leading manufacturing consulting firm in India, helping industries improve operations, efficiency, and business performance.",
+
+
+  keywords: [
+    "manufacturing consulting",
+    "business consulting",
+    "industrial consulting",
+    "Tetrahedron India"
+  ],
+
+  robots: "index, follow",
+
+  icons: {
+    icon: "/favicon.ico",
+  },
+
+  openGraph: {
+    title: "Tetrahedron",
+    description: "Manufacturing Consulting Firm In India",
+    url: "https://www.tetrahedron.in",
+    siteName: "Tetrahedron",
+    images: [
+      {
+        url: "https://www.tetrahedron.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Tetrahedron Consulting",
+      },
+    ],
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Tetrahedron",
+    description: "Manufacturing Consulting Firm In India",
+    images: ["https://www.tetrahedron.in/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({ children }) {
