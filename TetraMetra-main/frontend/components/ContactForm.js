@@ -127,14 +127,14 @@ export default function ContactForm({ onSuccess, onError, buttonText = "Submit",
         style={inputStyle}
       />
       <input
-        type="tel"
-        name="phone"
-        value={formData.phone}
-        onChange={handleInputChange}
-        placeholder="Phone No.*"
-        required
-        style={inputStyle}
-      />
+          type="tel"
+          name="phoneNumber"
+          value={formData.phoneNumber}
+          onChange={handleInputChange}
+          placeholder="Phone No.*"
+          required
+          style={inputStyle}
+        />
       <textarea
         name="requirements"
         value={formData.requirements}
