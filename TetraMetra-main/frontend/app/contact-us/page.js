@@ -11,14 +11,14 @@ export default function Home() {
     const form = e.target;
     const data = {
       name: form.name.value,
-      company: form.companyName.value,
       email: form.email.value,
-      mobile: form.Phone.value,
-      message: form.message.value,
+      requirements: form.message.value,   // ✅ message → requirements
+      companyName: form.companyName.value, // ✅ same as backend
+      phoneNumber: form.Phone.value,       // ✅ Phone → phoneNumber
     };
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("http://localhost:5000/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

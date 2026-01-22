@@ -48,7 +48,7 @@ export default function ContactForm({ onSuccess, onError, buttonText = "Submit",
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("http://localhost:5000/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -128,10 +128,10 @@ export default function ContactForm({ onSuccess, onError, buttonText = "Submit",
       />
       <input
         type="tel"
-        name="mobile"
-        value={formData.mobile}
+        name="phone"
+        value={formData.phone}
         onChange={handleInputChange}
-        placeholder="Mobile No.*"
+        placeholder="Phone No.*"
         required
         style={inputStyle}
       />

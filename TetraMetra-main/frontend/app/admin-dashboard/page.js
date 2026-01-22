@@ -27,78 +27,77 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-/* ================= CKEDITOR (SSR OFF) ================= */
-
+/* ================= CKEDITOR ================= */
 const CKEditorClient = dynamic(
   () => import("../../components/CKEditorClient"),
   { ssr: false }
 );
 
-/* ================= DEMO DATA ================= */
-
-const statsData = {
-  users: 1248,
-  leads: 856,
-  blogs: 38,
-};
-
-const userGrowthData = [
-  { month: "Jan", users: 400 },
-  { month: "Feb", users: 520 },
-  { month: "Mar", users: 680 },
-  { month: "Apr", users: 750 },
-  { month: "May", users: 890 },
-  { month: "Jun", users: 1050 },
-  { month: "Jul", users: 1248 },
-];
-
-const usersData = [
-  { id: 1, name: "Rahul Sharma", email: "rahul@gmail.com" },
-  { id: 2, name: "Priya Singh", email: "priya@gmail.com" },
-];
-
-/* ✅ UPDATED LEADS DATA */
-const leadsData = [
-  {
-    id: 1,
-    name: "Vikas",
-    email: "vikas@gmail.com",
-    phone: "9876543210",
-    updatedAt: "2026-01-16 12:30 PM",
-  },
-  {
-    id: 2,
-    name: "Anjali",
-    email: "anjali@gmail.com",
-    phone: "9123456780",
-    updatedAt: "2026-01-16 01:10 PM",
-  },
-];
-
-const blogsData = [];
-
 /* ================= SIDEBAR ================= */
-
 const sidebarItems = [
   { label: "Dashboard", icon: LayoutDashboard },
   { label: "Users", icon: Users },
   { label: "Leads", icon: Target },
-  { label: "Blog Manage", icon: FolderOpen },
   { label: "Blogs", icon: FileText },
-  { label: "Cases", icon: FolderOpen },
+  { label: "Blog Manage", icon: FolderOpen },
+  { label: "Cases", icon: FileText },
   { label: "Case Manage", icon: FolderOpen },
   { label: "Settings", icon: Settings },
 ];
 
 export default function AdminDashboard() {
+  const router = useRouter();
   const [activePage, setActivePage] = useState("Dashboard");
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const router = useRouter();
 
+  /* ✅ STATS STATE (ONLY ADDITION) */
+  const [stats, setStats] = useState({
+    users: 0,
+    leads: 0,
+    blogs: 0,
+  });
+
+  /* 🔐 AUTH GUARD */
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      router.replace("/admin-login");
+    }
+  }, [router]);
+
+  /* ✅ FETCH REAL COUNTS (ONLY ADDITION) */
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const token = localStorage.getItem("authToken");
+
+        const [usersRes, blogsRes] = await Promise.all([
+          fetch("http://localhost:5000/api/contact", {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+          fetch("http://localhost:5000/api/blogs"),
+        ]);
+
+        const usersData = await usersRes.json();
+        const blogsData = await blogsRes.json();
+
+        setStats({
+          users: usersData.length,
+          leads: usersData.length,
+          blogs: blogsData.length,
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  /* 🚪 LOGOUT */
   const confirmLogout = () => {
-    localStorage.removeItem("adminToken");
-    localStorage.removeItem("adminEmail");
-    router.push("/admin-login");
+    localStorage.clear();
+    router.replace("/admin-login");
   };
 
   return (
@@ -139,11 +138,13 @@ export default function AdminDashboard() {
             />
           </div>
 
-          {activePage === "Dashboard" && <Dashboard />}
+          {activePage === "Dashboard" && (
+            <Dashboard stats={stats} setActivePage={setActivePage} />
+          )}
           {activePage === "Users" && <UsersPage />}
           {activePage === "Leads" && <LeadsPage />}
-          {activePage === "Blog Manage" && <BlogManagePage />}
           {activePage === "Blogs" && <BlogsPage />}
+          {activePage === "Blog Manage" && <BlogManagePage />}
           {activePage === "Cases" && <CasesPage />}
           {activePage === "Case Manage" && <CaseManagePage />}
           {activePage === "Settings" && (
@@ -165,22 +166,21 @@ export default function AdminDashboard() {
 }
 
 /* ================= DASHBOARD ================= */
-
-function Dashboard() {
+function Dashboard({ stats, setActivePage }) {
   return (
     <>
       <div className="row mb-4">
-        <StatCard title="Users" value={statsData.users} />
-        <StatCard title="Leads" value={statsData.leads} />
-        <StatCard title="Blogs" value={statsData.blogs} />
+        <StatCard title="Users" value={stats.users} onClick={() => setActivePage("Users")} />
+        <StatCard title="Leads" value={stats.leads} onClick={() => setActivePage("Leads")} />
+        <StatCard title="Blogs" value={stats.blogs} onClick={() => setActivePage("Blog Manage")} />
       </div>
 
       <div className="card p-3">
         <h6>User Growth</h6>
         <ResponsiveContainer width="100%" height={250}>
-          <LineChart data={userGrowthData}>
+          <LineChart data={[]}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
+            <XAxis />
             <YAxis />
             <Tooltip />
             <Line dataKey="users" stroke="#f66829" />
@@ -191,27 +191,71 @@ function Dashboard() {
   );
 }
 
-/* ================= USERS ================= */
+/* ================= STAT CARD ================= */
+function StatCard({ title, value, onClick }) {
+  return (
+    <div className="col-md-3">
+      <div className="card p-3" style={{ cursor: "pointer" }} onClick={onClick}>
+        <small>{title}</small>
+        <h4>{value}</h4>
+        <span style={{ color: "#f66829" }}>
+          View details <ChevronRight size={14} />
+        </span>
+      </div>
+    </div>
+  );
+}
 
+
+/* ================= USERS ================= */
+/* ================= USERS ================= */
 function UsersPage() {
+  const router = useRouter();
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const token = localStorage.getItem("authToken");
+
+      const res = await fetch("http://localhost:5000/api/contact", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (res.status === 401) {
+        localStorage.clear();
+        router.replace("/admin-login");
+        return;
+      }
+
+      const data = await res.json();
+      setUsers(data);
+      console.log(data);
+    };
+
+    fetchUsers();
+  }, [router]);
+
   return (
     <div className="card p-4">
-      <h6 className="mb-3">Users List</h6>
+      <h6>Users</h6>
 
-      <table className="table table-bordered">
+      <table className="table table-bordered table-striped mt-3">
         <thead>
           <tr>
             <th>#</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Phone</th>
           </tr>
         </thead>
+
         <tbody>
-          {usersData.map((user, index) => (
-            <tr key={user.id}>
-              <td>{index + 1}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
+          {users.map((u, i) => (
+            <tr key={u._id}>
+              <td>{i + 1}</td>
+              <td>{u.name}</td>
+              <td>{u.email}</td>
+              <td>{u.phoneNumber || u.mobile || "-"}</td>
             </tr>
           ))}
         </tbody>
@@ -220,9 +264,34 @@ function UsersPage() {
   );
 }
 
-/* ================= LEADS (NO STATUS, PHONE + TIME ADDED) ================= */
 
+
+/* ================= LEADS ================= */
 function LeadsPage() {
+  const router = useRouter();
+  const [leadsData, setLeadsData] = useState([]);
+
+  useEffect(() => {
+    const fetchLeads = async () => {
+      const token = localStorage.getItem("authToken");
+
+      const res = await fetch("http://localhost:5000/api/contact", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (res.status === 401) {
+        localStorage.clear();
+        router.replace("/admin-login");
+        return;
+      }
+
+      const data = await res.json();
+      setLeadsData(data);
+    };
+
+    fetchLeads();
+  }, [router]);
+
   return (
     <div className="card p-3">
       <h6>Leads</h6>
@@ -236,13 +305,18 @@ function LeadsPage() {
             <th>Last Updated</th>
           </tr>
         </thead>
+
         <tbody>
           {leadsData.map((lead) => (
-            <tr key={lead.id}>
+            <tr key={lead._id}>
               <td>{lead.name}</td>
               <td>{lead.email}</td>
-              <td>{lead.phone}</td>
-              <td>{lead.updatedAt}</td>
+              <td>{lead.phone || lead.phoneNumber || lead.mobile || "-"}</td>
+              <td>
+                {lead.updatedAt
+                  ? new Date(lead.updatedAt).toLocaleString()
+                  : "-"}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -251,7 +325,7 @@ function LeadsPage() {
   );
 }
 
-/* ================= BLOG MANAGE ================= */
+
 
 function BlogManagePage() {
   const [blogs, setBlogs] = useState([]);
@@ -664,16 +738,25 @@ function CaseManagePage() {
 }
 
 /* ================= CASES ================= */
-
 function CasesPage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // 🔹 HTML remove helper
+  const stripHtml = (html) => {
+    if (!html) return "";
+    return html.replace(/<[^>]*>?/gm, "");
+  };
+
   const handlePublish = async () => {
     if (!title || !content) {
-      Swal.fire({icon: "warning", title: "Missing fields", text: "Title and content required"});
+      Swal.fire({
+        icon: "warning",
+        title: "Missing fields",
+        text: "Title and content required",
+      });
       return;
     }
 
@@ -683,27 +766,47 @@ function CasesPage() {
 
       const formData = new FormData();
       formData.append("title", title);
-      formData.append("description", content);
+
+      // ✅ HTML removed here
+      formData.append("description", stripHtml(content));
+
       if (image) formData.append("image", image);
 
       const response = await fetch("http://localhost:5000/api/cases", {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         body: formData,
       });
 
       const data = await response.json();
+
       if (!response.ok) {
-        Swal.fire({icon: "error", title: "Publish failed", text: data.message || "Case publish failed"});
+        Swal.fire({
+          icon: "error",
+          title: "Publish failed",
+          text: data.message || "Case publish failed",
+        });
         return;
       }
 
-      Swal.fire({icon: "success", title: "Published", text: "Case published successfully"});
+      Swal.fire({
+        icon: "success",
+        title: "Published",
+        text: "Case published successfully",
+      });
+
+      // reset form
       setTitle("");
       setContent("");
       setImage(null);
     } catch (error) {
-      Swal.fire({icon: "error", title: "Error", text: "Something went wrong"});
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Something went wrong",
+      });
     } finally {
       setLoading(false);
     }
@@ -746,6 +849,7 @@ function CasesPage() {
     </div>
   );
 }
+
 
 /* ================= BLOGS ================= */
 
@@ -850,55 +954,85 @@ function BlogsPage() {
 /* ================= SETTINGS ================= */
 
 function SettingsPage({ onLogout }) {
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out from your account",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#f66829",
+      cancelButtonColor: "#6c757d",
+      confirmButtonText: "Yes, Logout",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onLogout();
+      }
+    });
+  };
+
   return (
-    <div className="card p-4">
-      <button
-        className="btn"
-        style={{ backgroundColor: "#f66829", color: "#fff" }}
-        onClick={onLogout}
+    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "70vh" }}>
+      <div
+        className="card p-4 text-center"
+        style={{
+          width: "320px",
+          borderRadius: "16px",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+        }}
       >
-        Logout
-      </button>
-    </div>
-  );
-}
+        <h4 className="mb-3 fw-bold">Settings</h4>
+        <p className="text-muted mb-4">
+          Manage your account settings
+        </p>
 
-/* ================= CONFIRM MODAL ================= */
-
-function ConfirmModal({ title, message, onCancel, onConfirm }) {
-  return (
-    <div className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-dark bg-opacity-50">
-      <div className="bg-white p-4 rounded" style={{ width: 350 }}>
-        <h5>{title}</h5>
-        <p>{message}</p>
-        <div className="d-flex justify-content-end gap-2">
-          <button className="btn btn-secondary" onClick={onCancel}>
-            Cancel
-          </button>
-          <button
-            className="btn"
-            style={{ backgroundColor: "#f66829", color: "#fff" }}
-            onClick={onConfirm}
-          >
-            Confirm
-          </button>
-        </div>
+        <button
+          className="btn w-100 d-flex align-items-center justify-content-center gap-2"
+          style={{
+            backgroundColor: "#f66829",
+            color: "#fff",
+            borderRadius: "12px",
+            padding: "12px",
+            fontSize: "16px",
+            transition: "all 0.3s ease",
+          }}
+          onClick={handleLogout}
+          onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
+          onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+        >
+          <i className="bi bi-box-arrow-right"></i>
+          Logout
+        </button>
       </div>
     </div>
   );
 }
 
-/* ================= STAT CARD ================= */
 
-function StatCard({ title, value }) {
+/* ================= CONFIRM MODAL ================= */
+
+
+
+
+
+
+
+/* ================= COMMON ================= */
+function ConfirmModal({ title, message, onCancel, onConfirm }) {
   return (
-    <div className="col-md-3">
-      <div className="card p-3">
-        <small>{title}</small>
-        <h4>{value}</h4>
-        <span style={{ color: "#f66829" }}>
-          View details <ChevronRight size={14} />
-        </span>
+    <div className="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex justify-content-center align-items-center">
+      <div className="bg-white p-4 rounded">
+        <h5>{title}</h5>
+        <p>{message}</p>
+        <button className="btn btn-secondary me-2" onClick={onCancel}>
+          Cancel
+        </button>
+        <button
+          className="btn"
+          style={{ background: "#f66829", color: "#fff" }}
+          onClick={onConfirm}
+        >
+          Confirm
+        </button>
       </div>
     </div>
   );

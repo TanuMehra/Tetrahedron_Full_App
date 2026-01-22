@@ -5,6 +5,7 @@ const connectDB = require('./src/config/db');
 const authRoutes =  require('./src/routes/authRoutes')
 const blogRoutes = require('./src/routes/blogRoutes');
 const caseRoutes = require('./src/routes/caseRoutes');
+const contactRoutes = require('./src/routes/contactRoutes');
 
 
 // Load environment variables
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use('/api/cases', caseRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Root Route
 app.get('/', (req, res) => {
