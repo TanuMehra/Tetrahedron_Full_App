@@ -57,6 +57,8 @@ export default function AdminDashboard() {
     blogs: 0,
   });
 
+const [chartData, setChartData] = useState([]);
+
   /* 🔐 AUTH GUARD */
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -66,33 +68,54 @@ export default function AdminDashboard() {
   }, [router]);
 
   /* ✅ FETCH REAL COUNTS (ONLY ADDITION) */
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const token = localStorage.getItem("authToken");
+ useEffect(() => {
+  const fetchStats = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
 
-        const [usersRes, blogsRes] = await Promise.all([
-          fetch("http://localhost:5000/api/contact", {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-          fetch("http://localhost:5000/api/blogs"),
-        ]);
+      const [usersRes, blogsRes] = await Promise.all([
+        fetch("http://localhost:5000/api/contact", {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        fetch("http://localhost:5000/api/blogs"),
+      ]);
 
-        const usersData = await usersRes.json();
-        const blogsData = await blogsRes.json();
+      const usersData = await usersRes.json();
+      const blogsData = await blogsRes.json();
 
-        setStats({
-          users: usersData.length,
-          leads: usersData.length,
-          blogs: blogsData.length,
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    };
+      /* ===== COUNTS ===== */
+      setStats({
+        users: usersData.length,
+        leads: usersData.length,
+        blogs: blogsData.length,
+      });
 
-    fetchStats();
-  }, []);
+      /* ===== CHART DATA (MONTH-WISE) ===== */
+      const monthMap = {};
+
+      usersData.forEach((user) => {
+        if (!user.createdAt) return;
+
+        const date = new Date(user.createdAt);
+        const month = date.toLocaleString("default", { month: "short" });
+
+        monthMap[month] = (monthMap[month] || 0) + 1;
+      });
+
+      const chart = Object.keys(monthMap).map((month) => ({
+        month,
+        users: monthMap[month],
+      }));
+
+      setChartData(chart);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  fetchStats();
+}, []);
+
 
   /* 🚪 LOGOUT */
   const confirmLogout = () => {
@@ -207,7 +230,6 @@ function StatCard({ title, value, onClick }) {
 }
 
 
-/* ================= USERS ================= */
 /* ================= USERS ================= */
 function UsersPage() {
   const router = useRouter();
@@ -331,6 +353,7 @@ function LeadsPage() {
                 <td colSpan="6" className="text-center text-muted">
                   No leads found
                 </td>
+
               </tr>
             ) : (
               leadsData.map((lead) => (

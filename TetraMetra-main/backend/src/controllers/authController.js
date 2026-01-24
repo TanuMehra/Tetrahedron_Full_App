@@ -63,7 +63,34 @@ const loginUser = async (req, res) => {
     }
 };
 
+
+const getUserStatsByMonth = async (req, res) => {
+    try {
+        const stats = await User.aggregate([
+            {
+                $project: {
+                    month: { $month: "$createdAt" }
+                }
+            },
+            {
+                $group: {
+                    _id: "$month",
+                    total: { $sum: 1 }
+                }
+            },
+            {
+                $sort: { _id: 1 }
+            }
+        ]);
+
+        res.status(200).json(stats);
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error', error: error.message });
+    }
+};      
+
 module.exports = {
     registerUser,
     loginUser,
+    getUserStatsByMonth,
 };
