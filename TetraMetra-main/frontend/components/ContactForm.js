@@ -110,8 +110,8 @@ export default function ContactForm({ onSuccess, onError, buttonText = "Submit",
       />
       <input
         type="text"
-        name="company"
-        value={formData.company}
+        name="companyName"
+        value={formData.companyName}
         onChange={handleInputChange}
         placeholder="Company Name*"
         required
