@@ -229,41 +229,53 @@ function UsersPage() {
 
       const data = await res.json();
       setUsers(data);
-      console.log(data);
     };
 
     fetchUsers();
   }, [router]);
 
   return (
-    <div className="card p-4">
-      <h6>Users</h6>
+    <div className="card p-3 shadow-sm">
+      <div className="d-flex justify-content-between align-items-center mb-2">
+        <h6 className="mb-0">Users</h6>
+        <span className="badge bg-primary">{users.length}</span>
+      </div>
 
-      <table className="table table-bordered table-striped mt-3">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {users.map((u, i) => (
-            <tr key={u._id}>
-              <td>{i + 1}</td>
-              <td>{u.name}</td>
-              <td>{u.email}</td>
-              <td>{u.phoneNumber || u.mobile || "-"}</td>
+      {/* Responsive Table */}
+      <div className="table-responsive">
+        <table className="table table-bordered table-hover align-middle text-nowrap mt-3">
+          <thead className="table-dark">
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {users.length === 0 ? (
+              <tr>
+                <td colSpan="4" className="text-center text-muted">
+                  No users found
+                </td>
+              </tr>
+            ) : (
+              users.map((u, i) => (
+                <tr key={u._id}>
+                  <td>{i + 1}</td>
+                  <td>{u.name || "-"}</td>
+                  <td>{u.email || "-"}</td>
+                  <td>{u.phoneNumber || u.mobile || "-"}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
-
 
 
 /* ================= LEADS ================= */
@@ -293,38 +305,57 @@ function LeadsPage() {
   }, [router]);
 
   return (
-    <div className="card p-3">
-      <h6>Leads</h6>
+    <div className="card p-3 shadow-sm">
+      <div className="d-flex justify-content-between align-items-center mb-2">
+        <h6 className="mb-0">Leads</h6>
+        <span className="badge bg-primary">{leadsData.length}</span>
+      </div>
 
-      <table className="table mt-3">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Last Updated</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {leadsData.map((lead) => (
-            <tr key={lead._id}>
-              <td>{lead.name}</td>
-              <td>{lead.email}</td>
-              <td>{lead.phone || lead.phoneNumber || lead.mobile || "-"}</td>
-              <td>
-                {lead.updatedAt
-                  ? new Date(lead.updatedAt).toLocaleString()
-                  : "-"}
-              </td>
+      {/* Responsive Table */}
+      <div className="table-responsive">
+        <table className="table table-bordered table-hover align-middle text-nowrap mt-3">
+          <thead className="table-dark">
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Company Name</th>
+              <th style={{ minWidth: "250px" }}>Requirement</th>
+              <th>Last Updated</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {leadsData.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="text-center text-muted">
+                  No leads found
+                </td>
+              </tr>
+            ) : (
+              leadsData.map((lead) => (
+                <tr key={lead._id}>
+                  <td>{lead.name || "-"}</td>
+                  <td>{lead.email || "-"}</td>
+                  <td>{lead.phone || lead.phoneNumber || lead.mobile || "-"}</td>
+                  <td>{lead.companyName || "-"}</td>
+                  <td className="text-wrap">
+                    {lead.requirements || "-"}
+                  </td>
+                  <td>
+                    {lead.updatedAt
+                      ? new Date(lead.updatedAt).toLocaleString()
+                      : "-"}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
-
 
 
 function BlogManagePage() {

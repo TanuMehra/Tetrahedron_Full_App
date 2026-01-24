@@ -7,7 +7,7 @@ export default function ContactForm({ onSuccess, onError, buttonText = "Submit",
 
   const [formData, setFormData] = useState({
     name: "",
-    company: "",
+    companyName: "",
     email: "",
     mobile: "",
     requirements: "",
