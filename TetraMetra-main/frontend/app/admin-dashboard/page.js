@@ -167,6 +167,53 @@ export default function AdminDashboard() {
 
 /* ================= DASHBOARD ================= */
 function Dashboard({ stats, setActivePage }) {
+  const [monthlyData, setMonthlyData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchMonthlyStats = async () => {
+      try {
+        setLoading(true);
+        const token = localStorage.getItem("authToken");
+        const res = await fetch("http://localhost:5000/api/contact/stats/monthly", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          console.log("Monthly stats received:", data);
+          setMonthlyData(data);
+          setError(null);
+        } else {
+          setError(`Failed to fetch data: ${res.status}`);
+          console.error("Response not ok:", res.status);
+        }
+      } catch (err) {
+        console.error("Error fetching monthly stats:", err);
+        setError(err.message);
+        setMonthlyData([
+          { month: "Jan", users: 0 },
+          { month: "Feb", users: 0 },
+          { month: "Mar", users: 0 },
+          { month: "Apr", users: 0 },
+          { month: "May", users: 0 },
+          { month: "Jun", users: 0 },
+          { month: "Jul", users: 0 },
+          { month: "Aug", users: 0 },
+          { month: "Sep", users: 0 },
+          { month: "Oct", users: 0 },
+          { month: "Nov", users: 0 },
+          { month: "Dec", users: 0 },
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMonthlyStats();
+  }, []);
+
   return (
     <>
       <div className="row mb-4">
@@ -176,16 +223,30 @@ function Dashboard({ stats, setActivePage }) {
       </div>
 
       <div className="card p-3">
-        <h6>User Growth</h6>
-        <ResponsiveContainer width="100%" height={250}>
-          <LineChart data={[]}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis />
-            <YAxis />
-            <Tooltip />
-            <Line dataKey="users" stroke="#f66829" />
-          </LineChart>
-        </ResponsiveContainer>
+        <h6>User Growth (Monthly)</h6>
+        {loading ? (
+          <p className="text-muted">Loading graph...</p>
+        ) : error ? (
+          <p className="text-danger">Error: {error}</p>
+        ) : monthlyData && monthlyData.length > 0 ? (
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={monthlyData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="users"
+                stroke="#f66829"
+                strokeWidth={2}
+                dot={{ fill: "#f66829", r: 5 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        ) : (
+          <p className="text-muted">No data available</p>
+        )}
       </div>
     </>
   );
@@ -405,7 +466,7 @@ function BlogManagePage() {
 
   const handleSaveEdit = async () => {
     if (!editTitle || !editDescription) {
-      Swal.fire({icon: "warning", title: "Missing fields", text: "Title and description are required"});
+      Swal.fire({ icon: "warning", title: "Missing fields", text: "Title and description are required" });
       return;
     }
 
@@ -432,17 +493,17 @@ function BlogManagePage() {
       const data = await response.json();
 
       if (!response.ok) {
-        Swal.fire({icon: "error", title: "Update failed", text: data.message || "Failed to update blog"});
+        Swal.fire({ icon: "error", title: "Update failed", text: data.message || "Failed to update blog" });
         return;
       }
 
       // Update the blog in the list
       setBlogs(blogs.map((b) => (b._id === editBlog._id ? data : b)));
       setEditBlog(null);
-      Swal.fire({icon: "success", title: "Updated", text: "Blog updated successfully"});
+      Swal.fire({ icon: "success", title: "Updated", text: "Blog updated successfully" });
     } catch (error) {
 
-      Swal.fire({icon: "error", title: "Update failed", text: "Failed to update blog"});
+      Swal.fire({ icon: "error", title: "Update failed", text: "Failed to update blog" });
     } finally {
       setLoading(false);
     }
@@ -467,10 +528,10 @@ function BlogManagePage() {
       // Remove blog from list
       setBlogs(blogs.filter((b) => b._id !== deleteId));
       setDeleteId(null);
-      Swal.fire({icon: "success", title: "Deleted", text: "Blog deleted successfully"});
+      Swal.fire({ icon: "success", title: "Deleted", text: "Blog deleted successfully" });
     } catch (error) {
       console.error("Error deleting blog:", error);
-      Swal.fire({icon: "error", title: "Delete failed", text: "Failed to delete blog"});
+      Swal.fire({ icon: "error", title: "Delete failed", text: "Failed to delete blog" });
     } finally {
       setDeleteLoading(false);
     }
@@ -617,7 +678,7 @@ function CaseManagePage() {
 
   const handleSaveEdit = async () => {
     if (!editTitle || !editDescription) {
-      Swal.fire({icon: "warning", title: "Missing fields", text: "Title and description are required"});
+      Swal.fire({ icon: "warning", title: "Missing fields", text: "Title and description are required" });
       return;
     }
 
@@ -638,15 +699,15 @@ function CaseManagePage() {
 
       const data = await response.json();
       if (!response.ok) {
-        Swal.fire({icon: "error", title: "Update failed", text: data.message || "Failed to update case"});
+        Swal.fire({ icon: "error", title: "Update failed", text: data.message || "Failed to update case" });
         return;
       }
 
       setCases(cases.map((it) => (it._id === editCase._id ? data : it)));
       setEditCase(null);
-      Swal.fire({icon: "success", title: "Updated", text: "Case updated successfully"});
+      Swal.fire({ icon: "success", title: "Updated", text: "Case updated successfully" });
     } catch (error) {
-      Swal.fire({icon: "error", title: "Update failed", text: "Failed to update case"});
+      Swal.fire({ icon: "error", title: "Update failed", text: "Failed to update case" });
     } finally {
       setLoading(false);
     }
@@ -668,9 +729,9 @@ function CaseManagePage() {
 
       setCases(cases.filter((c) => c._id !== deleteId));
       setDeleteId(null);
-      Swal.fire({icon: "success", title: "Deleted", text: "Case deleted successfully"});
+      Swal.fire({ icon: "success", title: "Deleted", text: "Case deleted successfully" });
     } catch (error) {
-      Swal.fire({icon: "error", title: "Delete failed", text: "Failed to delete case"});
+      Swal.fire({ icon: "error", title: "Delete failed", text: "Failed to delete case" });
     } finally {
       setDeleteLoading(false);
     }
@@ -892,7 +953,7 @@ function BlogsPage() {
 
   const handlePublish = async () => {
     if (!title || !content) {
-      Swal.fire({icon: "warning", title: "Missing fields", text: "Title and content required"});
+      Swal.fire({ icon: "warning", title: "Missing fields", text: "Title and content required" });
       return;
     }
 
@@ -922,11 +983,11 @@ function BlogsPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        Swal.fire({icon: "error", title: "Publish failed", text: data.message || "Blog publish failed"});
+        Swal.fire({ icon: "error", title: "Publish failed", text: data.message || "Blog publish failed" });
         return;
       }
 
-      Swal.fire({icon: "success", title: "Published", text: "Blog published successfully"});
+      Swal.fire({ icon: "success", title: "Published", text: "Blog published successfully" });
 
       // reset form
       setTitle("");
@@ -934,7 +995,7 @@ function BlogsPage() {
       setImage(null);
     } catch (error) {
       console.error(error);
-      Swal.fire({icon: "error", title: "Error", text: "Something went wrong"});
+      Swal.fire({ icon: "error", title: "Error", text: "Something went wrong" });
     } finally {
       setLoading(false);
     }

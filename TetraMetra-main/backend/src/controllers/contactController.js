@@ -53,8 +53,64 @@ const getContactById = async (req, res) => {
     }
 };
 
+// @desc    Get monthly user statistics
+// @route   GET /api/contact/stats/monthly
+// @access  Private
+const getMonthlyStats = async (req, res) => {
+    try {
+        const currentYear = new Date().getFullYear();
+
+        // Get total contacts count
+        const totalContacts = await Contact.countDocuments();
+        console.log(`Total contacts in database: ${totalContacts}`);
+
+        const monthlyData = await Contact.aggregate([
+            {
+                $match: {
+                    createdAt: {
+                        $gte: new Date(`${currentYear}-01-01`),
+                        $lt: new Date(`${currentYear + 1}-01-01`)
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: { $month: "$createdAt" },
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $sort: { _id: 1 }
+            }
+        ]);
+
+        console.log('Monthly data from aggregation:', monthlyData);
+
+        // Create array for all 12 months
+        const months = [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+
+        const result = months.map((month, index) => {
+            const monthData = monthlyData.find(m => m._id === index + 1);
+            return {
+                month: month,
+                users: monthData ? monthData.count : 0
+            };
+        });
+
+        console.log('Final result for frontend:', result);
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error in getMonthlyStats:', error);
+        res.status(500).json({ message: 'Server Error', error: error.message });
+    }
+};
+
 module.exports = {
     createContact,
     getContacts,
-    getContactById
+    getContactById,
+    getMonthlyStats
 };
