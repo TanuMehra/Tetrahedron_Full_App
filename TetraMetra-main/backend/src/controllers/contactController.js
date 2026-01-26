@@ -61,6 +61,7 @@ const getMonthlyStats = async (req, res) => {
         const currentYear = new Date().getFullYear();
 
         // Get total contacts count
+        // It is used for graph
         const totalContacts = await Contact.countDocuments();
         console.log(`Total contacts in database: ${totalContacts}`);
 
